@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Appointment - MediFlow ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#d3e4fe", "on-secondary": "#ffffff", "on-secondary-fixed-variant": "#005049", "surface-tint": "#006398", "surface-container-high": "#dce9ff", "on-secondary-container": "#006f66", "on-secondary-fixed": "#00201d", "on-error": "#ffffff", "on-primary": "#ffffff", "on-background": "#0b1c30", "primary-container": "#007bb9", "primary": "#006194", "inverse-on-surface": "#eaf1ff", "on-tertiary": "#ffffff", "on-surface-variant": "#3f4850", "tertiary-fixed-dim": "#c4c7c9", "on-primary-fixed": "#001d31", "secondary": "#006a61", "surface-dim": "#cbdbf5", "tertiary-fixed": "#e0e3e5", "on-primary-container": "#fdfcff", "on-surface": "#0b1c30", "error-container": "#ffdad6", "surface-container": "#e5eeff", "primary-fixed-dim": "#93ccff", "inverse-surface": "#213145", "inverse-primary": "#93ccff", "outline-variant": "#bfc7d2", "secondary-fixed": "#89f5e7", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#444749", "secondary-fixed-dim": "#6bd8cb", "tertiary-container": "#727577", "surface-bright": "#f8f9ff", "on-tertiary-container": "#fbfdff", "on-primary-fixed-variant": "#004b73", "outline": "#707881", "on-tertiary-fixed": "#191c1e", "primary-fixed": "#cce5ff", "surface-container-low": "#eff4ff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "surface": "#f8f9ff", "tertiary": "#595c5e", "background": "#f8f9ff", "surface-container-highest": "#d3e4fe", "secondary-container": "#86f2e4"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+                    },
+                    spacing: {
+                        gutter: "1.5rem", "stack-sm": "0.5rem", "sidebar-width": "260px", "margin-page": "2rem", "stack-md": "1rem", "stack-lg": "2rem"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "body-md": ["Inter"], "headline-lg-mobile": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["26px", { lineHeight: "32px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="w-sidebar-width h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low flex flex-col py-gutter z-50">
+<div class="px-4 mb-stack-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediFlow ERP</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Clinical Excellence</p>
+</div>
+</div>
+<div class="flex-1 px-2 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-variant text-primary border-l-4 border-primary font-bold rounded-r-lg opacity-90 transition-opacity duration-150" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Billing</span>
+</a>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span> Quick Book
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-[260px] flex flex-col min-h-screen">
+<!-- TopAppBar (Shared Component) -->
+<header class="docked full-width top-0 sticky z-40 border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-margin-page bg-surface">
+<div class="flex items-center bg-surface-container-low rounded-full px-4 py-2 w-96 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:outline-none text-body-md font-body-md w-full" placeholder="Search patients, doctors..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary cursor-pointer hover:scale-105 duration-200 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary cursor-pointer hover:scale-105 duration-200 transition-transform">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female doctor in a crisp white coat, smiling warmly in a brightly lit, modern clinical setting with a light blue and white aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOY4_7JiloW8r_p5jW3E4YhG8c9T3T9aEEmDEwKb93g9rwCgxv7QRLlK2lKuYsZ7kDFWGpPl53ml4P1c0M_xyHSJ1OcHcF_5yltvPoXFZY7NrgzqmGt5oWsAp57ztUwskmb1RZs_9SlOiETfNPUv4Zmk_8RH0pnVkpk9ZY6yk_I4PD88ALRSOGxx_dtoNrC9DjIl6qEK3I0F3Wwn0NrYXaSctkGepQSPiF4cWZvtdcIVE21WMLBGi-nA"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-margin-page overflow-y-auto">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-background">Book New Appointment</h2>
+<p class="text-on-surface-variant font-body-md text-body-md mt-1">Schedule a visit for a patient with a specialist.</p>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-stack-lg">
+<!-- Left Column: Details Form -->
+<div class="xl:col-span-5 flex flex-col gap-stack-md">
+<div class="bg-surface-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.05)] transition-shadow">
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">patient_list</span>
+                                Patient Details
+                            </h3>
+<!-- Searchable Patient Dropdown -->
+<div class="mb-stack-md relative">
+<label class="block font-label-md text-label-md text-on-surface mb-2 uppercase tracking-wider">Select Patient</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-12 pl-10 pr-4 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search by name, ID or phone..." type="text" value="Eleanor Vance"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary cursor-pointer">arrow_drop_down</span>
+</div>
+</div>
+<!-- Department -->
+<div class="mb-stack-md">
+<label class="block font-label-md text-label-md text-on-surface mb-2 uppercase tracking-wider">Department</label>
+<div class="relative">
+<select class="w-full h-12 px-4 bg-surface border border-outline-variant rounded-lg text-body-md font-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>Orthopedics</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<!-- Doctor -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2 uppercase tracking-wider">Attending Physician</label>
+<div class="flex items-center gap-4 p-3 border border-primary rounded-lg bg-surface-container-low cursor-pointer">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A close-up headshot of a middle-aged male doctor with glasses, wearing scrubs, looking confident in a well-lit modern hospital corridor. Light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBulmBVSBoSKkUdSH32micCzT4S5iQ-WdxuLMGXSWJ3geVoPxKfI2j6LEx4cEw-DdktiGSAi9-JsBkXUNJkQRgIHIsfdPg6gxtRndMJtnPfZh8t3Rnck-h5ivxqcDgg0IaYBoLmy_0MslypspVDzjcaoSs3opM-XsH63g18F229Z2Pn_bR0hrP7_xOSbDUWv0cIyic4G-Nd48Kx-lFWBu9zvGZwiF8OMdVUSieA3M5Ws2PY2GOCS09qNA"/>
+<div class="flex-1">
+<div class="font-label-md text-label-md text-on-background">Dr. Marcus Chen</div>
+<div class="text-on-surface-variant text-sm">Senior Cardiologist</div>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Date & Time Scheduler -->
+<div class="xl:col-span-7 flex flex-col gap-stack-md">
+<div class="bg-surface-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+                                    Date &amp; Time
+                                </h3>
+<div class="flex gap-2 text-sm">
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+<!-- Date Picker Horizontal -->
+<div class="flex gap-3 overflow-x-auto pb-4 mb-4 border-b border-outline-variant no-scrollbar">
+<button class="flex-shrink-0 w-16 h-20 rounded-lg border border-outline-variant flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="text-xs uppercase font-semibold">Mon</span>
+<span class="font-headline-sm text-headline-sm mt-1">12</span>
+</button>
+<button class="flex-shrink-0 w-16 h-20 rounded-lg border border-outline-variant flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="text-xs uppercase font-semibold">Tue</span>
+<span class="font-headline-sm text-headline-sm mt-1">13</span>
+</button>
+<button class="flex-shrink-0 w-16 h-20 rounded-lg bg-primary text-on-primary shadow-[0px_0px_0px_2px_rgba(0,97,148,0.2)] flex flex-col items-center justify-center transition-colors">
+<span class="text-xs uppercase font-semibold">Wed</span>
+<span class="font-headline-sm text-headline-sm mt-1">14</span>
+</button>
+<button class="flex-shrink-0 w-16 h-20 rounded-lg border border-outline-variant flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="text-xs uppercase font-semibold">Thu</span>
+<span class="font-headline-sm text-headline-sm mt-1">15</span>
+</button>
+<button class="flex-shrink-0 w-16 h-20 rounded-lg border border-outline-variant flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="text-xs uppercase font-semibold">Fri</span>
+<span class="font-headline-sm text-headline-sm mt-1">16</span>
+</button>
+</div>
+<!-- Time Slots -->
+<h4 class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider">Morning Slots</h4>
+<div class="grid grid-cols-4 gap-3 mb-6">
+<!-- Available -->
+<button class="py-3 rounded-lg border border-secondary-container bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary hover:text-on-secondary transition-all">09:00 AM</button>
+<!-- Booked (Red) -->
+<button class="relative py-3 rounded-lg border border-error-container bg-error-container text-on-error-container font-label-md text-label-md opacity-75 cursor-not-allowed group">
+                                    09:30 AM
+                                    <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-error-container rounded-lg transition-opacity text-xs whitespace-nowrap px-1">Booked</span>
+</button>
+<!-- Selected -->
+<button class="py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md ring-2 ring-primary ring-offset-2">10:00 AM</button>
+<button class="py-3 rounded-lg border border-secondary-container bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary hover:text-on-secondary transition-all">10:30 AM</button>
+<button class="py-3 rounded-lg border border-secondary-container bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary hover:text-on-secondary transition-all">11:00 AM</button>
+<button class="py-3 rounded-lg border border-error-container bg-error-container text-on-error-container font-label-md text-label-md opacity-75 cursor-not-allowed">11:30 AM</button>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider">Afternoon Slots</h4>
+<div class="grid grid-cols-4 gap-3 mb-6">
+<button class="py-3 rounded-lg border border-secondary-container bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary hover:text-on-secondary transition-all">01:00 PM</button>
+<button class="py-3 rounded-lg border border-secondary-container bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary hover:text-on-secondary transition-all">01:30 PM</button>
+<button class="py-3 rounded-lg border border-secondary-container bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary hover:text-on-secondary transition-all">02:00 PM</button>
+<button class="py-3 rounded-lg border border-error-container bg-error-container text-on-error-container font-label-md text-label-md opacity-75 cursor-not-allowed">02:30 PM</button>
+</div>
+<!-- Suggestion Alert (Visible if interacting with booked, showing statically here) -->
+<div class="bg-surface-container-low border-l-4 border-primary p-4 rounded-r-lg flex items-start gap-3 mb-stack-lg">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div>
+<p class="font-label-md text-label-md text-on-background">Slot Unavailable</p>
+<p class="text-sm text-on-surface-variant">Suggested: Next available slot is at <strong class="text-primary">11:00 AM</strong>.</p>
+</div>
+</div>
+<!-- Action -->
+<div class="flex justify-end border-t border-outline-variant pt-6">
+<button class="bg-surface border border-outline-variant text-on-surface font-label-md text-label-md py-3 px-6 rounded-lg mr-4 hover:bg-surface-container transition-colors">Cancel</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md py-3 px-8 rounded-lg shadow-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">event_available</span>
+                                    Confirm Booking
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

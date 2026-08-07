@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow ERP - Billing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005049",
+                        "surface-tint": "#006398",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-container": "#006f66",
+                        "on-secondary-fixed": "#00201d",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#007bb9",
+                        "primary": "#006194",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3f4850",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-primary-fixed": "#001d31",
+                        "secondary": "#006a61",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-primary-container": "#fdfcff",
+                        "on-surface": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed-dim": "#93ccff",
+                        "inverse-surface": "#213145",
+                        "inverse-primary": "#93ccff",
+                        "outline-variant": "#bfc7d2",
+                        "secondary-fixed": "#89f5e7",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "tertiary-container": "#727577",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#fbfdff",
+                        "on-primary-fixed-variant": "#004b73",
+                        "outline": "#707881",
+                        "on-tertiary-fixed": "#191c1e",
+                        "primary-fixed": "#cce5ff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#595c5e",
+                        "background": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-container": "#86f2e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "stack-sm": "0.5rem",
+                        "sidebar-width": "260px",
+                        "margin-page": "2rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Zebra Tables */
+        .erp-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .erp-table tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        .erp-table tr:hover {
+            background-color: #f0fdfa; /* pale teal */
+        }
+        
+        /* Ambient Shadows */
+        .level-1 {
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+        }
+        .level-2-hover:hover {
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Input Focus */
+        .erp-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #006194; /* primary */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-body-md text-body-md antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background docked full-width top-0 sticky z-40 border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none flex justify-between items-center h-16 ml-[260px] px-margin-page">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MediFlow ERP</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full erp-input w-64 text-on-surface" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant hover:text-primary cursor-pointer hover:scale-105 duration-200 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant hover:text-primary cursor-pointer hover:scale-105 duration-200 transition-transform">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container overflow-hidden shrink-0 border border-outline-variant">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a smiling medical administrator or doctor in a brightly lit, modern clinical office environment. The lighting is soft and neutral, enhancing a clean, high-trust, and minimal aesthetic fitting for healthcare software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt0t6oo99-M4g7eqvUrSGQeWa12jRJDF6DQoMjJT5C-Gx6M4ZRxMwkmwHlFs2TmG9KIDTbiJ677vuVnW7oZNd64hy6AZ7eyqFopEVw6er4VfSoNTvFkKKAPMAnzZysG54HzONqrSbj9OTYDxarFQXoMP2DhhBRRexVZdaAZtUEVv1YG8xrAkRXHfxWjU79auCynwxhB5gPMUHFP44hx_LCd6rCCm7iQRkRkxSkLbYh19vGlPdsY4HHCw"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container-lowest w-sidebar-width h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline flat no shadows flex flex-col h-full w-[260px] py-gutter z-50">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="h-10 w-10 bg-primary rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary fill">medical_services</span>
+</div>
+<div>
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed leading-tight">MediFlow ERP</div>
+</div>
+</div>
+<div class="text-label-md font-label-md text-on-surface-variant tracking-wider">Clinical Excellence</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md hover:bg-primary-fixed-variant transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> Quick Book
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-variant dark:bg-primary-container text-primary dark:text-on-primary-container border-l-4 border-primary font-bold opacity-90 transition-opacity duration-150" href="#">
+<span class="material-symbols-outlined fill" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Billing</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mt-auto px-4 pt-4 border-t border-outline-variant">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] h-[calc(100vh-64px)] overflow-y-auto bg-background p-margin-page">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-1">New Invoice</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">INV-2023-0892 • Oct 24, 2023</p>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 border border-outline text-on-surface rounded flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">save</span> Save Draft
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Invoice Form -->
+<div class="grid grid-cols-12 gap-stack-lg">
+<!-- Left Column: Patient Info & Payment -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-stack-lg">
+<!-- Patient Info Card -->
+<div class="level-1 rounded-xl p-6 level-2-hover transition-shadow">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined">person</span> Patient Info
+                        </h3>
+<div class="flex flex-col gap-stack-sm">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Select Patient</label>
+<div class="relative">
+<select class="w-full h-11 px-3 border border-outline-variant rounded-lg bg-surface erp-input appearance-none text-on-background">
+<option>Sarah Jenkins (ID: 8839)</option>
+<option>Michael Chen (ID: 9021)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<div class="mt-2 p-4 bg-surface rounded-lg border border-outline-variant text-body-sm">
+<p class="font-semibold text-on-surface mb-1">Sarah Jenkins</p>
+<p class="text-on-surface-variant">DOB: 12/04/1985</p>
+<p class="text-on-surface-variant">Phone: (555) 123-4567</p>
+<p class="text-on-surface-variant">Insurance: BlueCross PPO</p>
+</div>
+<div class="mt-2">
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Attending Physician</label>
+<select class="w-full h-11 px-3 border border-outline-variant rounded-lg bg-surface erp-input text-on-background">
+<option>Dr. Emily Carter (Cardiology)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Payment Method Card -->
+<div class="level-1 rounded-xl p-6 level-2-hover transition-shadow">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined">credit_card</span> Payment Method
+                        </h3>
+<div class="flex flex-col gap-stack-sm">
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Method</label>
+<div class="relative">
+<select class="w-full h-11 px-3 border border-outline-variant rounded-lg bg-surface erp-input appearance-none text-on-background">
+<option>Credit Card (Terminal)</option>
+<option>Cash</option>
+<option>Insurance Claim</option>
+<option>Bank Transfer</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+<div class="mt-4">
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Billing Notes (Optional)</label>
+<textarea class="w-full p-3 border border-outline-variant rounded-lg bg-surface erp-input text-on-background min-h-[80px]" placeholder="Add notes for patient..."></textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Itemized Bill -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-stack-lg">
+<div class="level-1 rounded-xl p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">list_alt</span> Itemized Services
+                            </h3>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-sm">add_circle</span> Add Item
+                            </button>
+</div>
+<div class="border border-outline-variant rounded-lg overflow-hidden bg-surface mb-stack-md">
+<table class="w-full text-left erp-table">
+<thead class="bg-surface-variant text-on-surface-variant font-label-md text-label-md border-b border-outline-variant">
+<tr>
+<th class="p-3">Service Name</th>
+<th class="p-3 w-24 text-center">Qty</th>
+<th class="p-3 w-32 text-right">Unit Price</th>
+<th class="p-3 w-32 text-right">Total</th>
+<th class="p-3 w-12 text-center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant border-dashed">
+<td class="p-3">
+<input class="w-full bg-transparent border-b border-transparent focus:border-primary erp-input px-1" type="text" value="Initial Specialist Consultation"/>
+<div class="text-xs text-outline px-1">Code: CPT-99203</div>
+</td>
+<td class="p-3">
+<input class="w-full text-center bg-transparent border border-outline-variant rounded px-2 py-1 erp-input" min="1" type="number" value="1"/>
+</td>
+<td class="p-3 text-right">
+<div class="flex items-center justify-end">
+<span class="text-outline mr-1">$</span>
+<input class="w-20 text-right bg-transparent border border-outline-variant rounded px-2 py-1 erp-input item-price" type="number" value="150.00"/>
+</div>
+</td>
+<td class="p-3 text-right font-medium item-total">$150.00</td>
+<td class="p-3 text-center">
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant border-dashed">
+<td class="p-3">
+<input class="w-full bg-transparent border-b border-transparent focus:border-primary erp-input px-1" type="text" value="Comprehensive Metabolic Panel (CMP)"/>
+<div class="text-xs text-outline px-1">Code: LAB-80053</div>
+</td>
+<td class="p-3">
+<input class="w-full text-center bg-transparent border border-outline-variant rounded px-2 py-1 erp-input" min="1" type="number" value="1"/>
+</td>
+<td class="p-3 text-right">
+<div class="flex items-center justify-end">
+<span class="text-outline mr-1">$</span>
+<input class="w-20 text-right bg-transparent border border-outline-variant rounded px-2 py-1 erp-input item-price" type="number" value="85.50"/>
+</div>
+</td>
+<td class="p-3 text-right font-medium item-total">$85.50</td>
+<td class="p-3 text-center">
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant border-dashed">
+<td class="p-3">
+<input class="w-full bg-transparent border-b border-transparent focus:border-primary erp-input px-1" type="text" value="Electrocardiogram (ECG)"/>
+<div class="text-xs text-outline px-1">Code: CPT-93000</div>
+</td>
+<td class="p-3">
+<input class="w-full text-center bg-transparent border border-outline-variant rounded px-2 py-1 erp-input" min="1" type="number" value="1"/>
+</td>
+<td class="p-3 text-right">
+<div class="flex items-center justify-end">
+<span class="text-outline mr-1">$</span>
+<input class="w-20 text-right bg-transparent border border-outline-variant rounded px-2 py-1 erp-input item-price" type="number" value="120.00"/>
+</div>
+</td>
+<td class="p-3 text-right font-medium item-total">$120.00</td>
+<td class="p-3 text-center">
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Totals Section -->
+<div class="mt-auto bg-surface-bright border border-outline-variant rounded-lg p-6 flex flex-col md:flex-row justify-between items-end gap-6">
+<div class="w-full md:w-1/2 space-y-2">
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<span>Subtotal</span>
+<span>$355.50</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<span class="flex items-center gap-2">Tax (0%) <span class="material-symbols-outlined text-xs text-outline cursor-help" title="Medical services non-taxable in this region">info</span></span>
+<span>$0.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<span>Discount</span>
+<span class="text-secondary">-$0.00</span>
+</div>
+<div class="h-px bg-outline-variant my-2 w-full"></div>
+<div class="flex justify-between items-center text-on-surface font-headline-sm text-headline-sm">
+<span>Total Amount</span>
+<span class="text-primary" id="grand-total">$355.50</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-col gap-3">
+<button class="w-full md:w-auto bg-[#0284c7] text-white px-8 py-3 rounded-lg font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">print</span> Finalize &amp; Print Invoice
+                                </button>
+<button class="w-full md:w-auto border border-[#0d9488] text-[#0d9488] px-8 py-3 rounded-lg font-label-md text-label-md hover:bg-secondary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span> Send to Insurance
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Minimal script to demonstrate auto-calculation concept (visual only for this prototype)
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function() {
+                // In a real app, this would recalculate row totals and grand total
+                // For UI demonstration, we just add the focus glow via CSS
+            });
+        });
+    </script>
+</body></html>
