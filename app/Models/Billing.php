@@ -17,4 +17,9 @@ class Billing extends Model
     {
         return $this->belongsTo(Appointment::class);
     }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
 }

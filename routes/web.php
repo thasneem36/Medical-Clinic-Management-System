@@ -70,9 +70,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Appointment Routes
 Route::middleware(['auth'])->group(function () {
+    // Shared index: AppointmentController@index already branches its query by role internally
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+
     // Admin & Receptionist: Full access
     Route::middleware('role:admin,receptionist')->group(function () {
-        Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
         Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
         Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
         Route::get('/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
@@ -83,7 +85,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Doctor: Read-only access to own appointments
     Route::middleware('role:doctor')->group(function () {
-        Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
         Route::get('/appointments/{appointment}', [AppointmentController::class, 'show'])->name('appointments.show');
     });
 });
